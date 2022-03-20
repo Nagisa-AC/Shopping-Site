@@ -7,7 +7,7 @@ const adminData = require('./admin');
 // Shopping site routes
 router.get('/', (req, res, next) => {
     const products = adminData.products;
-    res.render('shop', {prods : products, docTitle : 'Shop'});
+    res.render('shop', {prods : products, docTitle : 'Shop', path : '/'});
 });
 
 // Exporting router
