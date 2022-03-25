@@ -12,7 +12,7 @@ const shopRoutes = require('./routes/shop');
 const app = express();
 
 // Pug View engine
-app.set('view engine', 'pug');
+app.set('view engine', 'ejs');
 app.set('views', 'views');
 
 // Body parser
