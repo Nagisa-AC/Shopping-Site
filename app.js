@@ -20,6 +20,7 @@ app.use(bodyParser.urlencoded({extended: true}))
 
 app.use(express.static(path.join(__dirname, 'public')))
 
+// MIddleware for routes folder
 app.use('/admin', adminData.routes);
 app.use(shopRoutes);
 
