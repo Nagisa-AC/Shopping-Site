@@ -1,6 +1,9 @@
 // Dependency in getHomePage callback 
 const adminData = require('../routes/admin');
 
+// Storing admin entered products
+const products = [];
+
 // Admin add product page
 exports.getAddProductsPage = (req, res, next) => {
     res.render('add-product', {
@@ -19,9 +22,8 @@ exports.getPostAddProducts = (req, res, next) => {
     res.redirect('/');
 };
 
-// Home page
-exports.getHomePage = (req, res, next) => {
-    const products = adminData.products;
+// Home page 
+exports.getProducts = (req, res, next) => {
     res.render('shop', { 
         pageTitle : 'Shop', 
         prods : products, 
