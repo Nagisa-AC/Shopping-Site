@@ -6,7 +6,7 @@ const productController = require('../controller/products');
 
 // Admin routes
 router.get('/add-product', productController.getAddProductsPage);
-router.post('/add-product', productController.getPostAddProducts);
+router.post('/add-product', productController.postAddProductsPage);
 
 // Exporting router
 module.exports = router;
