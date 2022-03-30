@@ -24,10 +24,11 @@ app.use(express.static(path.join(__dirname, 'public')))
 app.use('/admin', adminRoutes);
 app.use(shopRoutes);
 
-
+// 404 currently not working --> PLS fix
 app.use((req, res, next) => {
     res.status(404).render('404', {pageTitle : 'Page Not Found'});
 });
+
 
 // Listener
 const port = 3000;

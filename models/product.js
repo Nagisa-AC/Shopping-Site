@@ -1,8 +1,6 @@
-const res = require('express/lib/response');
 const fs = require('fs');
 const path = require('path');
-
-const products = [];
+const cwd = process.cwd();
 
 
 module.exports = class Product {
@@ -11,10 +9,22 @@ module.exports = class Product {
     };
 
     save() {
-        products.push(this);
+        const productPath = path.join(cwd, 'data', 'products.json');
+        fs.readFile(productPath, (err, fileContent) => {
+            let products = [];
+            if (!err) {
+                products = JSON.parse(fileContent);
+            }
+
+            products.push(this);
+            fs.writeFile(productPath, JSON.stringify(products), (err) => {
+                console.log(err);
+            });
+        });
     };
 
-    
+
+
 
 
 
