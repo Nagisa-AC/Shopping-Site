@@ -1,6 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 const cwd = process.cwd();
+const productPath = path.join(cwd, 'data', 'products.json');
 
 
 module.exports = class Product {
@@ -9,7 +10,7 @@ module.exports = class Product {
     };
 
     save() {
-        const productPath = path.join(cwd, 'data', 'products.json');
+        // const productPath = path.join(cwd, 'data', 'products.json'); // uncoment this for !err
         fs.readFile(productPath, (err, fileContent) => {
             let products = [];
             if (!err) {
@@ -18,41 +19,18 @@ module.exports = class Product {
 
             products.push(this);
             fs.writeFile(productPath, JSON.stringify(products), (err) => {
-                console.log(err);
+                if (err) console.log(err);
             });
         });
     };
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-    // save() {
-    //     const productsPath = path.join(
-    //         path.dirname(require.main.filename), '../', 'data', 'products.json');
-
-    //     fs.readFile(productsPath, (err, data) => {
-    //         let products = [];
-    //         if (!err) {
-    //             products = JSON.parse(data);
-    //         }
-    //         products.push(this);
-    //         fs.writeFile(productsPath, JSON.stringify(products), (err) => {
-    //             console.log(err);                
-    //         });
-    //     })
-    // };
-
-    static fetchProds() {
-        return products;
+    static fetchProds(callBack) {
+        fs.readFile(productPath, (err, fileContent) => {
+            if (err) {
+                callBack([]);
+            }
+            callBack(JSON.parse(fileContent));
+        });
     };
 };
